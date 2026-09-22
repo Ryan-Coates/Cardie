@@ -1,54 +1,88 @@
-const adultToggle = document.querySelector('#adult-toggle');
-const deckList = document.querySelector('#deck-list');
-const deckTitle = document.querySelector('#deck-title');
-const deckDescription = document.querySelector('#deck-description');
-const themePill = document.querySelector('#theme-pill');
-const countPill = document.querySelector('#count-pill');
-const cardType = document.querySelector('#card-type');
-const cardPrompt = document.querySelector('#card-prompt');
-const cardBadge = document.querySelector('#card-badge');
-const nextCardButton = document.querySelector('#next-card');
-
 const state = {
   decks: [],
   themes: {},
-  showAdult: localStorage.getItem('cardie-show-adult') === 'true',
+  showAdult: readStoredAdultPreference(),
   activeDeckId: null,
   activeCard: null,
   initFailed: false,
 };
 
-adultToggle.checked = state.showAdult;
+let adultToggle;
+let deckList;
+let deckTitle;
+let deckDescription;
+let themePill;
+let countPill;
+let cardType;
+let cardPrompt;
+let cardBadge;
+let nextCardButton;
 
-adultToggle.addEventListener('change', () => {
-  if (state.initFailed) {
-    adultToggle.checked = false;
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeApp);
+} else {
+  initializeApp();
+}
+
+function initializeApp() {
+  adultToggle = document.querySelector('#adult-toggle');
+  deckList = document.querySelector('#deck-list');
+  deckTitle = document.querySelector('#deck-title');
+  deckDescription = document.querySelector('#deck-description');
+  themePill = document.querySelector('#theme-pill');
+  countPill = document.querySelector('#count-pill');
+  cardType = document.querySelector('#card-type');
+  cardPrompt = document.querySelector('#card-prompt');
+  cardBadge = document.querySelector('#card-badge');
+  nextCardButton = document.querySelector('#next-card');
+
+  if (
+    !adultToggle ||
+    !deckList ||
+    !deckTitle ||
+    !deckDescription ||
+    !themePill ||
+    !countPill ||
+    !cardType ||
+    !cardPrompt ||
+    !cardBadge ||
+    !nextCardButton
+  ) {
     return;
   }
 
-  state.showAdult = adultToggle.checked;
-  localStorage.setItem('cardie-show-adult', String(state.showAdult));
-  ensureActiveDeck();
-  render();
-});
+  adultToggle.checked = state.showAdult;
 
-nextCardButton.addEventListener('click', () => {
-  state.activeCard = pickCard(getActiveDeck());
-  renderCard();
-});
+  adultToggle.addEventListener('change', () => {
+    if (state.initFailed) {
+      adultToggle.checked = false;
+      return;
+    }
 
-init().catch(() => {
-  state.initFailed = true;
-  adultToggle.checked = false;
-  adultToggle.disabled = true;
-  deckList.innerHTML = '';
-  deckTitle.textContent = 'Unable to load decks';
-  deckDescription.textContent = 'Check that the JSON files are available and valid.';
-  cardType.textContent = 'Error';
-  cardPrompt.textContent = 'Cardie could not load its deck data.';
-  cardBadge.textContent = 'Load failed';
-  nextCardButton.disabled = true;
-});
+    state.showAdult = adultToggle.checked;
+    writeStoredAdultPreference(state.showAdult);
+    ensureActiveDeck();
+    render();
+  });
+
+  nextCardButton.addEventListener('click', () => {
+    state.activeCard = pickCard(getActiveDeck());
+    renderCard();
+  });
+
+  init().catch(() => {
+    state.initFailed = true;
+    adultToggle.checked = false;
+    adultToggle.disabled = true;
+    deckList.innerHTML = '';
+    deckTitle.textContent = 'Unable to load decks';
+    deckDescription.textContent = 'Check that the JSON files are available and valid.';
+    cardType.textContent = 'Error';
+    cardPrompt.textContent = 'Cardie could not load its deck data.';
+    cardBadge.textContent = 'Load failed';
+    nextCardButton.disabled = true;
+  });
+}
 
 async function init() {
   const [deckResponse, themeResponse] = await Promise.all([
@@ -199,4 +233,20 @@ function formatCardType(type) {
     .split('-')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
+}
+
+function readStoredAdultPreference() {
+  try {
+    return localStorage.getItem('cardie-show-adult') === 'true';
+  } catch {
+    return false;
+  }
+}
+
+function writeStoredAdultPreference(value) {
+  try {
+    localStorage.setItem('cardie-show-adult', String(value));
+  } catch {
+    return;
+  }
 }

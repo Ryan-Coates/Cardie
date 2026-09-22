@@ -33,6 +33,12 @@ button {
   cursor: pointer;
 }
 
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--accent-soft);
+  outline-offset: 3px;
+}
+
 .shell {
   width: min(1120px, calc(100% - 2rem));
   margin: 0 auto;
