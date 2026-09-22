@@ -15,11 +15,17 @@ const state = {
   showAdult: localStorage.getItem('cardie-show-adult') === 'true',
   activeDeckId: null,
   activeCard: null,
+  initFailed: false,
 };
 
 adultToggle.checked = state.showAdult;
 
 adultToggle.addEventListener('change', () => {
+  if (state.initFailed) {
+    adultToggle.checked = false;
+    return;
+  }
+
   state.showAdult = adultToggle.checked;
   localStorage.setItem('cardie-show-adult', String(state.showAdult));
   ensureActiveDeck();
@@ -32,8 +38,15 @@ nextCardButton.addEventListener('click', () => {
 });
 
 init().catch(() => {
+  state.initFailed = true;
+  adultToggle.checked = false;
+  adultToggle.disabled = true;
+  deckList.innerHTML = '';
   deckTitle.textContent = 'Unable to load decks';
   deckDescription.textContent = 'Check that the JSON files are available and valid.';
+  cardType.textContent = 'Error';
+  cardPrompt.textContent = 'Cardie could not load its deck data.';
+  cardBadge.textContent = 'Load failed';
   nextCardButton.disabled = true;
 });
 
@@ -150,7 +163,7 @@ function renderCard() {
   }
 
   state.activeCard = card;
-  cardType.textContent = card.type.replace(/-/g, ' ');
+  cardType.textContent = formatCardType(card.type);
   cardPrompt.textContent = card.prompt;
   cardBadge.textContent = card.adult ? 'Adult couples only' : 'All audiences';
 }
@@ -176,4 +189,11 @@ function applyTheme(theme) {
   root.style.setProperty('--muted', palette.muted);
   root.style.setProperty('--accent', palette.accent);
   root.style.setProperty('--accent-soft', palette.accentSoft);
+}
+
+function formatCardType(type) {
+  return type
+    .split('-')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
 }
