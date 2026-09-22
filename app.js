@@ -43,6 +43,10 @@ async function init() {
     fetch('./data/themes.json'),
   ]);
 
+  if (!deckResponse.ok || !themeResponse.ok) {
+    throw new Error('Unable to load deck data.');
+  }
+
   const deckData = await deckResponse.json();
   const themeData = await themeResponse.json();
 
@@ -92,16 +96,23 @@ function render() {
   deckList.innerHTML = '';
 
   visibleDecks.forEach((deck) => {
+    const item = document.createElement('li');
     const button = document.createElement('button');
+    const title = document.createElement('span');
+    const count = document.createElement('small');
+
     button.type = 'button';
     button.className = `deck-button${deck.id === state.activeDeckId ? ' active' : ''}`;
-    button.innerHTML = `<span>${deck.title}</span><small>${deck.visibleCards.length} cards</small>`;
+    title.textContent = deck.title;
+    count.textContent = `${deck.visibleCards.length} cards`;
+    button.append(title, count);
     button.addEventListener('click', () => {
       state.activeDeckId = deck.id;
       state.activeCard = pickCard(getActiveDeck());
       render();
     });
-    deckList.appendChild(button);
+    item.appendChild(button);
+    deckList.appendChild(item);
   });
 
   const activeDeck = getActiveDeck();
