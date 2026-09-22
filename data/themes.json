@@ -1,0 +1,46 @@
+{
+  "themes": [
+    {
+      "id": "velvet",
+      "name": "Velvet Night",
+      "colors": {
+        "bg": "#120912",
+        "glow": "rgba(255, 94, 182, 0.28)",
+        "panel": "rgba(35, 16, 33, 0.84)",
+        "strong": "rgba(51, 23, 46, 0.96)",
+        "text": "#fff6fb",
+        "muted": "#d8bed0",
+        "accent": "#ff62bd",
+        "accentSoft": "#ffb2da"
+      }
+    },
+    {
+      "id": "midnight",
+      "name": "Midnight Satin",
+      "colors": {
+        "bg": "#08131f",
+        "glow": "rgba(86, 201, 255, 0.24)",
+        "panel": "rgba(12, 26, 45, 0.84)",
+        "strong": "rgba(18, 37, 61, 0.96)",
+        "text": "#f2f8ff",
+        "muted": "#b8cadc",
+        "accent": "#69d4ff",
+        "accentSoft": "#b8efff"
+      }
+    },
+    {
+      "id": "ember",
+      "name": "Ember Glow",
+      "colors": {
+        "bg": "#170b08",
+        "glow": "rgba(255, 119, 81, 0.24)",
+        "panel": "rgba(42, 21, 13, 0.84)",
+        "strong": "rgba(61, 27, 16, 0.96)",
+        "text": "#fff7f2",
+        "muted": "#e0c1b0",
+        "accent": "#ff875f",
+        "accentSoft": "#ffc4ae"
+      }
+    }
+  ]
+}

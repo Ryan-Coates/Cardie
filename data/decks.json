@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "decks": [
+    {
+      "id": "spark",
+      "title": "Spark",
+      "description": "Playful truths, dares, and what-if prompts to kick off date night.",
+      "theme": "velvet",
+      "cards": [
+        {
+          "id": "spark-truth-1",
+          "type": "truth",
+          "prompt": "What was your first impression of me, and what surprised you most later?",
+          "adult": false
+        },
+        {
+          "id": "spark-dare-1",
+          "type": "dare",
+          "prompt": "Recreate our best kiss in slow motion like it belongs in a movie trailer.",
+          "adult": false
+        },
+        {
+          "id": "spark-wyr-1",
+          "type": "would-you-rather",
+          "prompt": "Would you rather plan a spontaneous midnight road trip or a luxury stay-in date with candles and cocktails?",
+          "adult": false
+        }
+      ]
+    },
+    {
+      "id": "confessions",
+      "title": "Confessions",
+      "description": "A deeper deck for romantic honesty, flirty tension, and a little vulnerability.",
+      "theme": "midnight",
+      "cards": [
+        {
+          "id": "confessions-truth-1",
+          "type": "truth",
+          "prompt": "What do I do that instantly makes you feel wanted?",
+          "adult": false
+        },
+        {
+          "id": "confessions-dare-1",
+          "type": "dare",
+          "prompt": "Give me a 30-second pep talk about why we are irresistible together.",
+          "adult": false
+        },
+        {
+          "id": "confessions-adult-1",
+          "type": "truth",
+          "prompt": "Describe a fantasy date night that starts elegant and ends much less innocent.",
+          "adult": true
+        }
+      ]
+    },
+    {
+      "id": "after-dark",
+      "title": "After Dark",
+      "description": "Adult-only prompts designed for couples who want the heat turned all the way up.",
+      "theme": "ember",
+      "cards": [
+        {
+          "id": "after-dark-dare-1",
+          "type": "dare",
+          "prompt": "Whisper exactly how you want the next ten minutes of our night to go.",
+          "adult": true
+        },
+        {
+          "id": "after-dark-truth-1",
+          "type": "truth",
+          "prompt": "What outfit or look of mine lives in your head rent-free when you want to flirt with me?",
+          "adult": true
+        }
+      ]
+    }
+  ]
+}
