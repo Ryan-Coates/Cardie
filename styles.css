@@ -1,0 +1,249 @@
+:root {
+  --bg: #120912;
+  --bg-glow: rgba(255, 94, 182, 0.28);
+  --panel: rgba(35, 16, 33, 0.84);
+  --panel-strong: rgba(51, 23, 46, 0.96);
+  --text: #fff6fb;
+  --muted: #d8bed0;
+  --accent: #ff62bd;
+  --accent-soft: #ffb2da;
+  --shadow: rgba(7, 1, 6, 0.42);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top, var(--bg-glow), transparent 32%),
+    linear-gradient(160deg, var(--bg) 0%, #09040b 100%);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--accent-soft);
+  outline-offset: 3px;
+}
+
+.shell {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 3rem 0 4rem;
+}
+
+.hero,
+.browser {
+  background: var(--panel);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  backdrop-filter: blur(18px);
+  box-shadow: 0 30px 80px var(--shadow);
+}
+
+.hero {
+  padding: 2rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.eyebrow,
+.section-label,
+.card-type,
+.meta,
+.pill,
+.card-badge {
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.eyebrow,
+.section-label,
+.meta,
+.deck-description,
+.card-badge {
+  color: var(--muted);
+}
+
+h1,
+h2,
+.card-prompt {
+  margin: 0;
+  font-family: 'Times New Roman', Georgia, serif;
+}
+
+h1 {
+  font-size: clamp(3rem, 10vw, 5rem);
+}
+
+.hero-copy,
+.deck-description {
+  margin: 0.75rem 0 0;
+  max-width: 40rem;
+  line-height: 1.6;
+}
+
+.hero-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.toggle input {
+  accent-color: var(--accent);
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.browser {
+  margin-top: 1.5rem;
+  padding: 1.75rem;
+}
+
+.deck-header,
+.card-footer {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deck-stats,
+.deck-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+}
+
+.pill,
+.deck-button,
+.card-badge,
+.next-card {
+  border-radius: 999px;
+}
+
+.pill,
+.card-badge {
+  padding: 0.65rem 0.9rem;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.deck-list {
+  margin: 1.5rem 0;
+}
+
+.deck-button {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  padding: 0.95rem 1.15rem;
+  text-align: left;
+  min-width: 13rem;
+}
+
+.deck-button span {
+  display: block;
+}
+
+.deck-button small {
+  color: var(--muted);
+}
+
+.deck-button.active {
+  border-color: var(--accent);
+  background: linear-gradient(135deg, rgba(255, 98, 189, 0.28), rgba(255, 255, 255, 0.08));
+}
+
+.card-stage {
+  padding: 0.5rem 0 0;
+}
+
+.card-shell {
+  min-height: 22rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border-radius: 28px;
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+    var(--panel-strong);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.card-type {
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.card-prompt {
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.1;
+}
+
+.next-card {
+  border: none;
+  padding: 0.95rem 1.4rem;
+  color: #17050f;
+  background: linear-gradient(135deg, var(--accent-soft), var(--accent));
+  font-weight: 700;
+}
+
+.next-card:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+code {
+  color: var(--accent-soft);
+}
+
+@media (max-width: 700px) {
+  .shell {
+    width: min(100% - 1rem, 100%);
+    padding-top: 1rem;
+  }
+
+  .hero,
+  .browser,
+  .card-shell {
+    border-radius: 22px;
+  }
+
+  .deck-header,
+  .card-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .next-card {
+    width: 100%;
+  }
+}

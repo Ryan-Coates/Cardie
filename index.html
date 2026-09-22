@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cardie | Couples card decks</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <p class="eyebrow">JSON-powered couples games</p>
+        <div>
+          <h1>Cardie</h1>
+          <p class="hero-copy">
+            Sleek card decks for flirty nights in, from playful icebreakers to after-dark prompts.
+          </p>
+        </div>
+        <div class="hero-controls">
+          <label class="toggle" for="adult-toggle">
+            <input id="adult-toggle" type="checkbox" />
+            <span>Show adult-only cards</span>
+          </label>
+          <p class="meta">Upload more decks later by following the JSON format in <code>data/decks.json</code>.</p>
+        </div>
+      </section>
+
+      <section class="browser">
+        <div class="deck-header">
+          <div>
+            <p class="section-label">Decks</p>
+            <h2 id="deck-title">Loading decks…</h2>
+            <p id="deck-description" class="deck-description"></p>
+          </div>
+          <div class="deck-stats">
+            <span id="theme-pill" class="pill">Theme</span>
+            <span id="count-pill" class="pill">0 cards</span>
+          </div>
+        </div>
+
+        <ul id="deck-list" class="deck-list" aria-label="Deck list"></ul>
+
+        <article class="card-stage">
+          <div class="card-shell">
+            <p id="card-type" class="card-type">Prompt</p>
+            <h3 id="card-prompt" class="card-prompt" aria-live="polite">Choose a deck to begin.</h3>
+            <div class="card-footer">
+              <span id="card-badge" class="card-badge">All audiences</span>
+              <button id="next-card" class="next-card" type="button">Next card</button>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
