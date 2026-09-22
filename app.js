@@ -153,7 +153,10 @@ function render() {
 
 function renderCard() {
   const activeDeck = getActiveDeck();
-  const card = state.activeCard ?? pickCard(activeDeck);
+  const card =
+    activeDeck?.visibleCards?.some((visibleCard) => visibleCard.id === state.activeCard?.id)
+      ? state.activeCard
+      : pickCard(activeDeck);
 
   if (!card) {
     cardType.textContent = 'Waiting';

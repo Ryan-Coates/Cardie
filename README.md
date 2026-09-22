@@ -30,6 +30,27 @@ Add decks in `data/decks.json` using this shape:
 
 Themes live in `data/themes.json` and map the deck `theme` value to a color palette.
 
+```json
+{
+  "themes": [
+    {
+      "id": "theme-id",
+      "name": "Theme name",
+      "colors": {
+        "bg": "#120912",
+        "glow": "rgba(255, 94, 182, 0.28)",
+        "panel": "rgba(35, 16, 33, 0.84)",
+        "strong": "rgba(51, 23, 46, 0.96)",
+        "text": "#fff6fb",
+        "muted": "#d8bed0",
+        "accent": "#ff62bd",
+        "accentSoft": "#ffb2da"
+      }
+    }
+  ]
+}
+```
+
 ## Features
 
 - Sleek single-page couples card experience
